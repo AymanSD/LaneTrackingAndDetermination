@@ -31,38 +31,32 @@ while True:
     res1 = cv2.bitwise_and(grey1, grey1, mask = mask1)
 ##    res2 = cv2.bitwise_and(grey2, grey2, mask = mask2)
 
-    Kernel = np.ones((3,3), np.uint8)
-## Morphological Transformation
-    
-##    blur = cv2.GaussianBlur(res1, (15,15), 0)
-##    erosion = cv2.erode(res1, Kernel, iterations = 1)
-##    dilation = cv2.dilate(res1, Kernel, iterations = 1)
-
-####Edge Detection
+## Edge Detection
 
     edge1 = cv2.Canny(res1, 10, 10, apertureSize = 3)
     edge2 = cv2.Canny(res2, 10, 10, apertureSize = 3)
     
-##Hough Line Transform
+## Probablistic Hough Line Transform
 
-##First Camera (Front Left)
+## First Camera (Front Left)
+    minLineLength = 20
+    maxLineGap = 10
     font = cv2.FONT_HERSHEY_SIMPLEX
-    lines1 = cv2.HoughLines(edge1,5,np.pi/180,10)
-    points1 = [[]]
-    for i in range(0,len(lines1)):
-        for rho1,theta1 in lines1[i]:
-            a1 = np.cos(theta1)
-            b1 = np.sin(theta1)
-            x10 = a1*rho1
-            y10 = b1*rho1
-            x11 = int(x10 + 1000*(-b1))
-            y11 = int(y10 + 1000*(a1))
-            x12 = int(x10 - 1000*(-b1))
-            y12 = int(y10 - 1000*(a1))
-            points1[0].append((x11, y11, x12, y12))
-            print(points1)
-            cv2.line(roi1,(x11,y11),(x12,y12),(0,0,255),4)
 
+    lines = cv2.HoughLinesP(edge1,1,np.pi/180,10,minLineLength,maxLineGap)
+    points = [[]]
+    for i in range(0, len(lines)):
+        for x1,y1,x2,y2 in lines[i]:            
+            points[0].append((x1, y1, x2, y2))            
+            cv2.line(roi1,(x1,y1),(x2,y2),(0,0,255),5)
+            alpha = math.degrees(math.atan((y1-y2)/(x1-x2)))
+            if 50 < x1&x2 < 100:
+                X1 = (x1+x2)/2
+            elif 280 < x1&x2 < 300:
+                X2 = (x1+x2)/2
+            else:
+                X3 = (x1+x2)/2
+                
 ##        c1 = (x11 + x12)/2
 ##        if c1 <= -100:
 ##            cv2.putText(frame, 'Lane 2', (20,250), font, 1.5, (200, 0,50), 5, cv2.LINE_AA)
@@ -71,21 +65,19 @@ while True:
         
 ####Second Camera (Front Rightt)
         
-##    lines2 = cv2.HoughLines(edge2,5,np.pi/180,10)
-##    points2 = [[]]
+##    lines2 = cv2.HoughLinesP(edge2,1,np.pi/180,10,minLineLength,maxLineGap)
+##   points = [[]]
 ##    for j in range(0, len(lines2)):
-##        for rho2,theta2 in lines2[j]:
-##            a2 = np.cos(theta2)
-##            b2 = np.sin(theta2)
-##            x20 = a2*rho2
-##            y20 = b2*rho2
-##            x21 = int(x20 + 1000*(-b2))
-##            y21 = int(y20 + 1000*(a2))
-##            x22 = int(x20 - 1000*(-b2))
-##            y22 = int(y20 - 1000*(a2))
-##            points2[0].append((x21, y21, x22, y22))
-##            print(points2)
-##            cv2.line(roi2,(x21,y21),(x22,y22),(0,0,255),4)
+##        for x12,y12,x22,y22 in lines[j]:            
+##            points[0].append((x12, y12, x22, y22))            
+##            cv2.line(roi2,(x12,y12),(x22,y22),(0,0,255),5)
+##            alpha2 = math.degrees(math.atan((y12-y22)/(x12-x22)))
+##            if 50 < x12&x22 < 100:
+##                X12 = (x12+x22)/2
+##            elif 280 < x12&x22 < 300:
+##                X22 = (x12+x22)/2
+##            else:
+##                X32 = (x12+x22)/2
 
         
 ##        c = (x1 + x2)/2
