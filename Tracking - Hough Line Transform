@@ -49,18 +49,19 @@ while True:
     font = cv2.FONT_HERSHEY_SIMPLEX
     lines1 = cv2.HoughLines(edge1,5,np.pi/180,10)
     points1 = [[]]
-    for rho1,theta1 in lines1[0]:
-        a1 = np.cos(theta1)
-        b1 = np.sin(theta1)
-        x10 = a1*rho1
-        y10 = b1*rho1
-        x11 = int(x10 + 1000*(-b1))
-        y11 = int(y10 + 1000*(a1))
-        x12 = int(x10 - 1000*(-b1))
-        y12 = int(y10 - 1000*(a1))
-        points1[0].append((x11, y11, x12, y12))
-        print(points1)
-        cv2.line(roi1,(x11,y11),(x12,y12),(0,0,255),4)
+    for i in range(0,len(lines1)):
+        for rho1,theta1 in lines1[i]:
+            a1 = np.cos(theta1)
+            b1 = np.sin(theta1)
+            x10 = a1*rho1
+            y10 = b1*rho1
+            x11 = int(x10 + 1000*(-b1))
+            y11 = int(y10 + 1000*(a1))
+            x12 = int(x10 - 1000*(-b1))
+            y12 = int(y10 - 1000*(a1))
+            points1[0].append((x11, y11, x12, y12))
+            print(points1)
+            cv2.line(roi1,(x11,y11),(x12,y12),(0,0,255),4)
 
 ##        c1 = (x11 + x12)/2
 ##        if c1 <= -100:
