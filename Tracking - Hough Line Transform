@@ -18,7 +18,7 @@ while True:
 
     
     grey1 = cv2.cvtColor(roi1, cv2.COLOR_BGR2GRAY)
-    grey2 = cv2.cvtColor(roi2, cv2.COLOR_BGR2GRAY)
+##    grey2 = cv2.cvtColor(roi2, cv2.COLOR_BGR2GRAY)
 
 ##Color Filtering        
 
@@ -41,7 +41,7 @@ while True:
 ####Edge Detection
 
     edge1 = cv2.Canny(res1, 10, 10, apertureSize = 3)
-##    edge2 = cv2.Canny(res2, 10, 10, apertureSize = 3)
+    edge2 = cv2.Canny(res2, 10, 10, apertureSize = 3)
     
 ##Hough Line Transform
 
@@ -73,18 +73,19 @@ while True:
         
 ##    lines2 = cv2.HoughLines(edge2,5,np.pi/180,10)
 ##    points2 = [[]]
-##    for rho2,theta2 in lines2[0]:
-##        a2 = np.cos(theta2)
-##        b2 = np.sin(theta2)
-##        x20 = a2*rho2
-##        y20 = b2*rho2
-##        x21 = int(x20 + 1000*(-b2))
-##        y21 = int(y20 + 1000*(a2))
-##        x22 = int(x20 - 1000*(-b2))
-##        y22 = int(y20 - 1000*(a2))
-##        points2[0].append((x21, y21, x22, y22))
-##        print(points2)
-##        cv2.line(roi2,(x21,y21),(x22,y22),(0,0,255),4)
+##    for j in range(0, len(lines2)):
+##        for rho2,theta2 in lines2[j]:
+##            a2 = np.cos(theta2)
+##            b2 = np.sin(theta2)
+##            x20 = a2*rho2
+##            y20 = b2*rho2
+##            x21 = int(x20 + 1000*(-b2))
+##            y21 = int(y20 + 1000*(a2))
+##            x22 = int(x20 - 1000*(-b2))
+##            y22 = int(y20 - 1000*(a2))
+##            points2[0].append((x21, y21, x22, y22))
+##            print(points2)
+##            cv2.line(roi2,(x21,y21),(x22,y22),(0,0,255),4)
 
         
 ##        c = (x1 + x2)/2
