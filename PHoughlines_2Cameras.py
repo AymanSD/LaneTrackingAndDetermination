@@ -1,7 +1,7 @@
 
-################################################################################
-######################### Lane Detection and Determination #####################
-################################################################################
+#########################################################################################################################################
+######################################################### Lane Detection and Tracking ###################################################
+#########################################################################################################################################
 
 
 import numpy as np
@@ -14,7 +14,6 @@ import statistics as st
 cap = cv2.VideoCapture('pa0007.MP4')
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 ##out = cv2.VideoWriter('lanes.avi',fourcc, 20.0, (1024,576))
-##output = cv2.VideoWriter('edge.avi',fourcc, 25.0, (200,350))
 
 while True:
     
@@ -67,7 +66,6 @@ while True:
                                               
                         cv2.line(AoI1,(x11,y11),(x21,y21),(0,0,255),5)
                         points1[0].append((x11, y11, x21, y21))
-        ##                       print(points)
                         X11[0].append((x11))
                         Right1 = max(max(X11))
                         Left1 = min(min(X11))
@@ -75,18 +73,15 @@ while True:
                         ImageCentre = 170
                         cv2.line(AoI2,(x12,y12),(x22,y22),(0,0,255),5)
                         points2[0].append((x12, y12, x22, y22))
-##                        print(points2)
                         X12[0].append((x12))
                         Right2 = max(max(X12))
                         Left2 = min(min(X12))
-##                        middle2 = int(st.mean())
                         Dis2Centre11 = ImageCentre - Left1
                         Dis2Centre12 = Right1 - ImageCentre
                         Dis2Centre21 = ImageCentre - Left2
                         Dis2Centre22 = Right2 - ImageCentre
                         
                         Lane = [[]]
-##                        if Left1 < 100:
                         if  (Dis2Centre11) > (Dis2Centre12):
                             if (Dis2Centre21) > (Dis2Centre22):
                                 Lane = 'Lane 2'
@@ -103,18 +98,13 @@ while True:
                             
                         else:
                             break
-##                            
-##                                Lane = 'Not Detected'
-##                                cv2.putText(frame, Lane, (100,270), font, 1, (200, 255,20), 3, cv2.LINE_AA)
-                        print(Dis2Centre11,Dis2Centre12,Dis2Centre21,Dis2Centre22, Lane)                                             
+
+                print(Dis2Centre11,Dis2Centre12,Dis2Centre21,Dis2Centre22, Lane)                                             
 
 
 
         cv2.imshow('frame', frame)
-##        cv2.imshow('Result1',Result1)
-##        cv2.imshow('Mask1',Mask1)
-##        cv2.imshow('edge1', edge1)
-##        cv2.imshow('Edges1', edge1)
+##        cv2.imshow('Edge1', edge1)
     else:
         continue
         
@@ -124,7 +114,4 @@ while True:
 
 cap.release()
 ##out.release()
-##output.release()
 cv2.destroyAllWindows()
-
- 
