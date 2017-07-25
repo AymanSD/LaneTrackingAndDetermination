@@ -8,6 +8,7 @@ import numpy as np
 import cv2
 import math
 import statistics as st
+import time
 
 ##Capturing video:
 
@@ -50,7 +51,7 @@ while True:
     minLineLength = 10
     maxLineGap = 10
     font = cv2.FONT_HERSHEY_SIMPLEX
-    
+    T = list(time.localtime())
 
     lines1 = cv2.HoughLinesP(edge1,1,np.pi/180,10,minLineLength,maxLineGap)
     lines2 = cv2.HoughLinesP(edge2,1,np.pi/180,10,minLineLength,maxLineGap)
@@ -99,7 +100,11 @@ while True:
                         else:
                             break
 
-                print(Dis2Centre11,Dis2Centre12,Dis2Centre21,Dis2Centre22, Lane)                                             
+                        F = [T[3:6],x11,y11,x21,y21,x12,y12,x22,y22, Lane]
+##                        f = open('Results.txt','a')
+                        print(F)
+##                        f.write(str(F)+'\n')
+##                        f.close()                                             
 
 
 
