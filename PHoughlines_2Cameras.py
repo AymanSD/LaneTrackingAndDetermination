@@ -12,7 +12,7 @@ import time
 
 ##Capturing video:
 
-cap = cv2.VideoCapture('pa0007.MP4')
+cap = cv2.VideoCapture('Sample.MP4')
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 ##out = cv2.VideoWriter('lanes.avi',fourcc, 20.0, (1024,576))
 
