@@ -3,6 +3,10 @@
 ######################################################### Lane Detection and Tracking ###################################################
 #########################################################################################################################################
 
+## This code determine the lane from 2 cameras
+## THE DETECTOR USED IS CANNY EDGE DETECTOR
+## THE TRACKING ALGORITHM USED IS PROBABALISTIC HOUGH LINE TRANSFORM
+## TO STOP THE VIDEO PRESS ESC KEY
 
 import numpy as np
 import cv2
@@ -101,8 +105,10 @@ while True:
                             break
 
                         F = [T[3:6],x11,y11,x21,y21,x12,y12,x22,y22, Lane]
-##                        f = open('Results.txt','a')
                         print(F)
+
+#### To save the result to a text file:                       
+##                        f = open('Results.txt','a')
 ##                        f.write(str(F)+'\n')
 ##                        f.close()                                             
 
