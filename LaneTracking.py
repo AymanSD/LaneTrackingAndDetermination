@@ -18,11 +18,14 @@ import time
 
 cap = cv2.VideoCapture('Sample.MP4')
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
+
+## To save the video output:
+
 ##out = cv2.VideoWriter('lanes.avi',fourcc, 20.0, (1024,576))
 
 while True:
     
-    _, frame = cap.read()
+    ret, frame = cap.read()
        
         
 ## Area o Interest, Negative 
@@ -115,7 +118,7 @@ while True:
 
 
         cv2.imshow('frame', frame)
-##        cv2.imshow('Edge1', edge1)
+
     else:
         continue
         
