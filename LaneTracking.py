@@ -3,9 +3,9 @@
 ######################################################### Lane Detection and Tracking ###################################################
 #########################################################################################################################################
 
-## This code determine the lane from 2 cameras
-## THE DETECTOR USED IS CANNY EDGE DETECTOR
-## THE TRACKING ALGORITHM USED IS PROBABALISTIC HOUGH LINE TRANSFORM
+## Determine the position of the vehicle on a dual carriageway
+## DETECTOR: CANNY EDGE DETECTOR
+## TRACKING ALGORITHM: PROBABALISTIC HOUGH LINE TRANSFORM
 ## TO STOP THE VIDEO PRESS ESC KEY
 
 import numpy as np
