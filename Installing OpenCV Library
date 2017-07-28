@@ -1,9 +1,0 @@
-This works on Windows x64 system
-
-Make sure you have python3 for x64 install
-
-Open the python Idle and write the following commands:
-
-
-import pip
-pi.main(['install','opencv'])
