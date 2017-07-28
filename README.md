@@ -8,7 +8,7 @@ As it was developed on a x64 environment; It may be necessary to modify some par
 This algorithm is still under development.
 
 
-# To Import OpenCV library into Python
+# To Import OpenCV library into Python3
 
 Open Python IDLE 
 write down the folowing commands
